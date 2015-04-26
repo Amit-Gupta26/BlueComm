@@ -10,6 +10,8 @@ I'm planning to put this project on Gradle when it be ready to be used.
 > BlueComm.getInstace().getPairedDevice();
 > t
 
+- item
+
 ## Disclam
 - This project is still under development. It's not yet use in production and it's not yet ready for production.
 - This project was originally developped to use with HC-05 and HC-06 module.
