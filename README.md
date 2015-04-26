@@ -8,7 +8,8 @@ I'm planning to put this project on Gradle when it be ready to be used.
 ## Feature
 - Use BlueComm to get device and menage bluetooth state:
 
-		BlueComm.getInstace().getPairedDevice();
+		BlueComm.getInstance().getPairedDevice();
+        BlueComm.getInstance().getReachableDevice();
     
 - Enable bluetooth on device ( Don't forget to ask user before open bluetooth ! ):
 
