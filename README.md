@@ -13,9 +13,9 @@ I'm planning to put this project on Gradle when it be ready to be used.
 - Enable bluetooth on device ( Don't forget to ask user before open bluetooth ! ):
 
 		isBluetoothAvailable()
-    isBluetoothOpen()
-    openBluetooth()
-    closeBluetooth()
+    	isBluetoothOpen()
+    	openBluetooth()
+    	closeBluetooth()
     
 - item
 
