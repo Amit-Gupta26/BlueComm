@@ -6,12 +6,16 @@ A bunch of class to help you to deal with bluetooth on android.
 I'm planning to put this project on Gradle when it be ready to be used.
 
 ## Feature
-- Use BlueComm to get device and menage bluetooth state:
+- Use BlueComm to get device and manage bluetooth state:
 
 		BlueComm.getInstance().getPairedDevice();
         BlueComm.getInstance().getReachableDevice();
     
-- 
+- Use BlueCommDevice to connect device and manage device:
+
+		BlueCommDevice.pairDevice();
+		BlueCommDevice.connect();
+		BlueCommDevice.send(String msg);        
     
 - Enable bluetooth on device ( Don't forget to ask user before open bluetooth ! ):
 
