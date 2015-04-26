@@ -11,6 +11,8 @@ I'm planning to put this project on Gradle when it be ready to be used.
 		BlueComm.getInstance().getPairedDevice();
         BlueComm.getInstance().getReachableDevice();
     
+- 
+    
 - Enable bluetooth on device ( Don't forget to ask user before open bluetooth ! ):
 
 		isBluetoothAvailable()
@@ -18,7 +20,9 @@ I'm planning to put this project on Gradle when it be ready to be used.
     	openBluetooth()
     	closeBluetooth()
     
-- item
+- Use custom BlueCommDevice Class, you just have to set it to BlueComm:
+		
+        BlueComm.getInstance().setDeviceClass(BlueDeviceTest.class);
 
 ## Disclam
 - This project is still under development. It's not yet use in production and it's not yet ready for production.
