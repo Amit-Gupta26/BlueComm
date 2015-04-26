@@ -8,7 +8,7 @@ I'm planning to put this project on Gradle when it be ready to be used.
 ## Feature
 - Use BlueComm to get device and menage bluetooth state:
 > BlueComm.getInstace().getPairedDevice();
-> 
+> t
 
 ## Disclam
 - This project is still under development. It's not yet use in production and it's not yet ready for production.
