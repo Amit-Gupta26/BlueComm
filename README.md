@@ -13,8 +13,6 @@ I'm planning to put this project on Gradle when it be ready to be used.
     isBluetoothOpen()
     openBluetooth()
     closeBluetooth()
- 
-
 - item
 
 ## Disclam
