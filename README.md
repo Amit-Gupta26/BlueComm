@@ -6,9 +6,6 @@ A bunch of class to help you to deal with bluetooth on android.
 I'm planning to put this project on Gradle when it be ready to be used.
 
 ## Feature
-
-- BlueCommDevice is Serializable, you can use BlueComm to save it in file.
-- Get RSSI of BlueCommDevice.
 - Use BlueComm to get device and manage bluetooth state:
 
 		BlueComm.getInstance().getPairedDevice();		// Bluetooth device paired
@@ -30,6 +27,9 @@ I'm planning to put this project on Gradle when it be ready to be used.
 - Use custom BlueCommDevice Class, you just have to set it to BlueComm:
 		
         BlueComm.getInstance().setDeviceClass(BlueDeviceTest.class);
+        
+- BlueCommDevice is Serializable, you can use BlueComm to save it in file.
+- Get RSSI of BlueCommDevice.
 
 ## Disclam
 - This project is still under development. It's not yet use in production and it's not yet ready for production.
