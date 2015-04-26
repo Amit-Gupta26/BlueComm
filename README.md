@@ -3,7 +3,7 @@ A bunch of class to help you to deal with bluetooth on android.
 
 ## Disclam
 - This project is stil under developpement. 
-- 
+- item
 - item
 
 ## License
