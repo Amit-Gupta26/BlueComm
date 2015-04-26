@@ -7,12 +7,16 @@ I'm planning to put this project on Gradle when it be ready to be used.
 
 ## Feature
 - Use BlueComm to get device and menage bluetooth state:
+
 	BlueComm.getInstace().getPairedDevice();
+    
 - Enable bluetooth on device ( Don't forget to ask user before open bluetooth ! ):
-	isBluetoothAvailable()
+
+		isBluetoothAvailable()
     isBluetoothOpen()
     openBluetooth()
     closeBluetooth()
+    
 - item
 
 ## Disclam
