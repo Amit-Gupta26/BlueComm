@@ -2,8 +2,8 @@
 A bunch of class to help you to deal with bluetooth on android.
 
 ## Disclam
-- This project is stil under developpement. 
-- item
+- This project is still under development. It's not yet use in production and it's not yet ready for production.
+- This project was developped to use with 
 - item
 
 ## License
