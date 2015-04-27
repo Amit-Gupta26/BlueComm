@@ -2,6 +2,8 @@ BlueComm
 =====================
 A bunch of class to help you to deal with bluetooth on android.
 
+This library is a set of function and method to connect with bluetooth device. It provide a lot of listener for connection, pairing or state change. You can serialize and save custom BlueCommDevice object.
+
 ## Getting Started
 I'm planning to put this project on Gradle when it be ready to be used.
 
@@ -51,6 +53,7 @@ I'm planning to put this project on Gradle when it be ready to be used.
         BlueComm.getInstance().getSavedDevice()
 
 - Get RSSI of BlueCommDevice.
+- Paire, unPaire device with callback.
 
 ## Disclam
 - This project is still under development. It's not yet use in production and it's not yet ready for production.
