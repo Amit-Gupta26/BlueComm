@@ -44,8 +44,9 @@ public class BlueComm {
 
     private BlueCommBroadcastReceiver.BlueCommBroadCastServiceListener serviceListener = new BlueCommBroadcastReceiver.BlueCommBroadCastServiceListener() {
         @Override
-        public void onDiscovery(BlueCommDevice device) {
-            
+        public void onDiscovery(BluetoothDevice device) {
+            BlueCommDevice bluecommDevice = deviceFactory(device);
+
         }
 
         @Override
@@ -103,8 +104,8 @@ public class BlueComm {
         inContext.registerReceiver(mReceiver, filter2);
         inContext.registerReceiver(mReceiver, filter3);
     }
-    public void onStop(Context inContext) {
-        inContext.unregisterReceiver(mReceiver);
+    public void onStop() {
+        mContext.unregisterReceiver(mReceiver);
         for (BlueCommDevice blueCommDevice : getSavedDevice()) {
             blueCommDevice.disconnect();
         }

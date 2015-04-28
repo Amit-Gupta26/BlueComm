@@ -1,22 +1,9 @@
 package com.alfidev.sacot41.bluecomm;
 
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.alfidev.sacot41.bluecomm.library.BlueComm;
-import com.alfidev.sacot41.bluecomm.library.BlueCommDevice;
-
-import java.util.ArrayList;
-import java.util.Set;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -25,25 +12,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        BlueComm.getInstance().deviceClass = BlueDeviceTest.class;
-
-        BlueComm.getInstance().deviceFactory(null);
-
-        Set<BluetoothDevice> devices = BluetoothAdapter.getDefaultAdapter().getBondedDevices();
-        if ( devices.size() > 0) {
-            for (BluetoothDevice device : devices) {
-
-            }
-        }
-
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

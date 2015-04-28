@@ -1,12 +1,11 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.alfidev.sacot41.bluecomm"
-        minSdkVersion 17
+        minSdkVersion 11
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"

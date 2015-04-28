@@ -17,6 +17,7 @@ public class BlueCommBroadcastReceiver extends BroadcastReceiver {
         public void onRSSI(String macAddress, short rssi);
         public void onConnection(String macAddress);
         public void onDisconnection(String macAddress);
+        public void onBondStateChange(String macAddress, int currentBondState, int passBondState);
     }
     private ArrayList<BlueCommBroadCastDeviceListener> clientArray = new ArrayList<>();
     public void registerToBroadCast(BlueCommBroadCastDeviceListener deviceListener) { clientArray.add(deviceListener); }
@@ -30,7 +31,7 @@ public class BlueCommBroadcastReceiver extends BroadcastReceiver {
     private  BlueCommBroadCastStateListener stateListener;
 
     public interface BlueCommBroadCastServiceListener {
-        public void onDiscovery(BlueCommDevice device);
+        public void onDiscovery(BluetoothDevice device);
         public void onFinishDiscovery();
     }
     private BlueCommBroadCastServiceListener serviceListener;
@@ -78,10 +79,6 @@ public class BlueCommBroadcastReceiver extends BroadcastReceiver {
                 }
             }
 
-            if (action.equals(BluetoothAdapter.ACTION_DISCOVERY_FINISHED)) {
-                if (serviceListener != null) serviceListener.onDiscovery(new BlueCommDevice(device));
-            }
-
         } else if(action.equals(BluetoothDevice.ACTION_ACL_CONNECTED)){
             if (clientArray != null && clientArray.size() > 0) {
                 for (BlueCommBroadCastDeviceListener blueCommBroadCastDeviceListener : clientArray) {
@@ -97,7 +94,18 @@ public class BlueCommBroadcastReceiver extends BroadcastReceiver {
                 }
             }
         } else if (action.equals(BluetoothAdapter.ACTION_DISCOVERY_FINISHED)) {
+
             if (serviceListener != null) serviceListener.onFinishDiscovery();
+
+        } else if (action.equals(BluetoothDevice.ACTION_BOND_STATE_CHANGED)) {
+
+            int prevBondState = intent.getIntExtra(BluetoothDevice.EXTRA_PREVIOUS_BOND_STATE, -1);
+            int bondState = intent.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, -1);
+
+            for (BlueCommBroadCastDeviceListener blueCommBroadCastDeviceListener : clientArray) {
+                if (blueCommBroadCastDeviceListener  != null) blueCommBroadCastDeviceListener.onBondStateChange(device.getAddress(), bondState, prevBondState);
+                else clientArray.remove(blueCommBroadCastDeviceListener);
+            }
         }
 
     }

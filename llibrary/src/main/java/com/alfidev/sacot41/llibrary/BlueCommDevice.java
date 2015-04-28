@@ -2,6 +2,7 @@ package com.alfidev.sacot41.bluecomm.library;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.util.Log;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
@@ -34,6 +35,7 @@ public class BlueCommDevice implements Serializable {
     public String getName() { return this.mDevice.getName(); }
     public BlueCommDeviceStatus getStatus() { return this.mStatus; }
     public UUID getUUID() { return this.mUuid; }
+    public int pairState() { return this.mDevice.getBondState(); }
 
     BlueCommDevice(String inMacAddress) { this.mDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(inMacAddress); }
     BlueCommDevice(BluetoothDevice inDevice) { this.mDevice = inDevice; }
@@ -74,7 +76,18 @@ public class BlueCommDevice implements Serializable {
     public void setOnCatchRSSIListener(onCatchRSSIListener listener) { this.catchRSSIListener = listener; }
 
     /**
-     * Registe to BroadCast
+     * Listener on pair state change
+     */
+    public interface onPairStateChange {
+        public void onPaired(int lastState);
+        public void onPairing(int lastState);
+        public void onUnPair(int lastState);
+    }
+    private onPairStateChange pairChangeListener;
+    public void setOnPairStateChangeListener(onPairStateChange listener) { this.pairChangeListener = listener; }
+
+    /**
+     * Register to BroadCast
      */
     void registerToBroadCast(BlueCommBroadcastReceiver broadcastReceiver){
         broadcastReceiver.registerToBroadCast(new BlueCommBroadcastReceiver.BlueCommBroadCastDeviceListener() {
@@ -95,6 +108,17 @@ public class BlueCommDevice implements Serializable {
                     if (lostConnectionListener != null) lostConnectionListener.lostConnection();
                 }
             }
+
+            @Override
+            public void onBondStateChange(String macAddress, int currentBondState, int passBondState) {
+                if (mMacAddress.equals(macAddress)){
+                    if (pairChangeListener != null) {
+                        if (currentBondState == BluetoothDevice.BOND_BONDED) pairChangeListener.onPaired(passBondState);
+                        else if (currentBondState == BluetoothDevice.BOND_BONDING) pairChangeListener.onPairing(passBondState);
+                        else if (currentBondState == BluetoothDevice.BOND_NONE) pairChangeListener.onUnPair(passBondState);
+                    }
+                }
+            }
         });
     }
 
@@ -105,6 +129,11 @@ public class BlueCommDevice implements Serializable {
      */
     public void pairDevice() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method m = mDevice.getClass().getMethod("createBond", (Class[]) null);
+        m.invoke(mDevice, (Object[]) null);
+    }
+
+    private void unpairDevice(BluetoothDevice device) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        Method m = mDevice.getClass() .getMethod("removeBond", (Class[]) null);
         m.invoke(mDevice, (Object[]) null);
     }
 
