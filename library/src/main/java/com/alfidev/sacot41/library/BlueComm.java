@@ -1,4 +1,4 @@
-package com.alfidev.sacot41.bluecomm.library;
+package com.alfidev.sacot41.library;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -152,6 +152,8 @@ public class BlueComm {
         BluetoothAdapter.getDefaultAdapter().startDiscovery();
     }
 
+    public void cancelDiscovery() { BluetoothAdapter.getDefaultAdapter().cancelDiscovery(); }
+
     public void saveDevice(BlueCommDevice device) throws IOException {
         ArrayList<BlueCommDevice> deviceList = getSavedDevice();
         if (deviceList == null) deviceList = new ArrayList<BlueCommDevice>();
@@ -169,7 +171,7 @@ public class BlueComm {
     public ArrayList<BlueCommDevice> getSavedDevice() {
         ArrayList<BlueCommDevice> deviceList = null;
         try {
-            ArrayList<BlueCommDevice> intermediateList = (ArrayList<BlueCommDevice>) InternalStorage.readObject(mContext , INTERNAL_SAVE_BLUECOMMDEVICE_LIST);
+            ArrayList<BlueCommDevice> intermediateList = (ArrayList<BlueCommDevice>) InternalStorage.readObject(mContext, INTERNAL_SAVE_BLUECOMMDEVICE_LIST);
             if (intermediateList.size() > 0 ) {
                 deviceList = new ArrayList<BlueCommDevice>();
                 for (BlueCommDevice blueCommDevice : intermediateList) {
@@ -237,7 +239,7 @@ public class BlueComm {
         return device;
     }
 
-   public  BlueCommDevice deviceFactory(BlueCommDevice inDevice)  {
+   public BlueCommDevice deviceFactory(BlueCommDevice inDevice)  {
 
        if (!BlueCommDevice.class.isAssignableFrom(this.deviceClass)) throw new IllegalArgumentException("device class is not a extension of BlueCommDevice");
 

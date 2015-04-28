@@ -1,4 +1,4 @@
-package com.alfidev.sacot41.bluecomm.library;
+package com.alfidev.sacot41.library;
 
 import android.content.Context;
 
